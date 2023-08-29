@@ -8,6 +8,7 @@ import { GlobalContext } from "../context/GlobalContext";
 import "./style.css";
 import { AlertOutlined, ReloadOutlined } from "@ant-design/icons";
 import { Option } from "antd/es/mentions";
+import BtnExcel from "./BtnExcel";
 
 const TablaRubros = () => {
   const URLDOS = process.env.REACT_APP_URL;
@@ -36,6 +37,8 @@ const TablaRubros = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [cliLead, setCliLead] = useState("");
   const [cliAct, setCliAct] = useState({});
+  const [nombreGrupos, setNombreGrupos] = useState ();
+
 
   const cargarTablaInfo = () => {
     setIsLoadingTR(true); // Establecer isLoadingTR en true antes de hacer la solicitud
@@ -79,15 +82,17 @@ const TablaRubros = () => {
   useEffect(() => {
     if (activeTab === "3" && idUsu) {
       cargarTablaInfo();
+      getConf();
     }
   }, [activeTab, idUsu, actualizarData]);
 
-  // const rowClassName = (record, index) => {
-  //   if (isTotalRow && index === 0) {
-  //     return "total-row"; // Agrega una clase CSS para la fila totalRow
-  //   }
-  //   return "";
-  // };
+    //Obtiene nombres de grupo1 y grupo2: http://10.0.0.153/duoc/modulos/getConf.php
+    const getConf = async () => {
+      const data = await fetch(`${URLDOS}getConf.php`);
+      const jsonData = await data.json();
+      setNombreGrupos(jsonData[0]);
+  
+    }
 
   const columnsRubros = [
     {
@@ -159,6 +164,18 @@ const TablaRubros = () => {
       align: "right",
       sorter: (a, b) => sorterWithTotalRow(a, b, "mixto"),
       sortDirections: ["ascend", "descend"],
+    },
+    {
+      title: `${nombreGrupos?.grupo1.toUpperCase()}`,
+      dataIndex: "zonas",
+      key: "zonas",
+      className: "hidden-column"
+    },
+    {
+      title: `${nombreGrupos?.grupo2.toUpperCase()}`,
+      dataIndex: "centro",
+      key: "centro",
+      className: "hidden-column"
     },
   ];
 
@@ -301,6 +318,9 @@ const TablaRubros = () => {
               .replace(/,/g, ".")
           : c.Mixto
         : "S/D",
+
+        zonas: c.gruuno_desc,
+        centro: c.grudos_desc,
     }))
   );
 
@@ -368,6 +388,8 @@ const TablaRubros = () => {
 
   return (
     <>
+      <BtnExcel columns={columnsRubros} dataSource={dataRubros} saveAsName={'tablaProdRubro'} />
+
       {isLoadingTR ? (
         <div
           style={{
@@ -385,7 +407,7 @@ const TablaRubros = () => {
           dataSource={dataRubros}
           columns={columnsRubros}
           size="small"
-          // rowClassName={rowClassName}
+          pagination={{showSizeChanger: false}}
           onRow={(record) => ({
             onClick: (event) => {
               if (event.target.tagName !== "DIV") {

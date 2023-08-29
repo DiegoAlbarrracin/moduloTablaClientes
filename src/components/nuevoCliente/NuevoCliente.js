@@ -173,12 +173,10 @@ const NuevoCliente = () => {
         ref={formRef}
         initialValues={initialValues}
         labelCol={{ span: 10 }}
-        //wrapperCol={{ span: 20 }}
         layout="vertical"
         onFinish={nuevoCli}
-        //style={{ marginLeft: "35px" }}
       >
-        <div style={{ display: "flex", flexDirection: "column" }}>
+        <div>
           <div>
             <Form.Item
               label="Razón Social"
@@ -199,22 +197,16 @@ const NuevoCliente = () => {
             </Form.Item>
           </div>
 
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-            }}
-          >
+          <div className="inline-inputs-contenedor">
             <Form.Item label="Teléfono" name="telefono">
-              <Input style={{ width: "170px" }} />
+              <Input className="input-width" />
             </Form.Item>
             <Form.Item
               label="Celular"
               name="celular"
               className="hidden-asterisk"
             >
-              <Input style={{ width: "170px" }} />
+              <Input className="input-width" />
             </Form.Item>
           </div>
 
@@ -222,20 +214,14 @@ const NuevoCliente = () => {
             <Input />
           </Form.Item>
 
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-            }}
-          >
+          <div className="inline-inputs-contenedor" >
             <Form.Item label="CUIT" name="cuit" className="hidden-asterisk">
-              <Input style={{ width: "170px" }} />
+              <Input className="input-width" />
             </Form.Item>
 
-            <Form.Item label="Tamaño" name="tamano" className="hidden-asterisk">
+            <Form.Item label="Tamaño" name="tamano" className="hidden-asterisk input-width">
               {tamaño ? (
-                <Select style={{ width: "170px" }}>
+                <Select >
                   {tamaño.map((tam) => (
                     <Select.Option key={tam.tam_id} value={tam.tam_id}>
                       {tam.tam_desc}
@@ -250,22 +236,15 @@ const NuevoCliente = () => {
             </Form.Item>
           </div>
 
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-            }}
-          >
+          <div className="inline-inputs-contenedor">
             <Form.Item
               label="Tipo Cliente"
               labelCol={{ span: 20 }}
-              wrapperCol={{ span: 20 }}
               name="tipoClientes"
-              className="hidden-asterisk"
+              className="hidden-asterisk input-width"
             >
               {tiposCliente ? (
-                <Select style={{ width: "170px" }}>
+                <Select>
                   {tiposCliente.map((tip) => (
                     <Select.Option key={tip.tip_id} value={tip.tip_id}>
                       {tip.tip_desc}
@@ -280,13 +259,11 @@ const NuevoCliente = () => {
             </Form.Item>
             <Form.Item
               label="Sector"
-              labelCol={{ span: 20 }}
-              wrapperCol={{ span: 20 }}
               name="sector"
-              className="hidden-asterisk"
+              className="hidden-asterisk input-width"
             >
               {sector ? (
-                <Select style={{ width: "170px" }}>
+                <Select>
                   {sector.map((sec) => (
                     <Select.Option key={sec.sec_id} value={sec.sec_id}>
                       {sec.sec_desc}
@@ -301,13 +278,7 @@ const NuevoCliente = () => {
             </Form.Item>
           </div>
 
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-            }}
-          >
+          <div className="inline-inputs-contenedor">
             <Form.Item
               label={conf ? conf[0].grupo1 : "-"}
               name="zona"
@@ -317,10 +288,10 @@ const NuevoCliente = () => {
                   message: "Por favor seleccione la zona",
                 },
               ]}
-              className="hidden-asterisk"
+              className="hidden-asterisk input-width"
             >
               {grupoUno ? (
-                <Select style={{ width: "170px" }}>
+                <Select>
                   {grupoUno.map((uno) => (
                     <Select.Option key={uno.gruuno_id} value={uno.gruuno_id}>
                       {uno.gruuno_desc}
@@ -342,10 +313,10 @@ const NuevoCliente = () => {
                   message: "Por favor seleccione el centro",
                 },
               ]}
-              className="hidden-asterisk"
+              className="hidden-asterisk input-width"
             >
               {grupoDos ? (
-                <Select style={{ width: "170px" }}>
+                <Select >
                   {grupoDos.map((dos) => (
                     <Select.Option key={dos.grudos_id} value={dos.grudos_id}>
                       {dos.grudos_desc}
@@ -360,17 +331,8 @@ const NuevoCliente = () => {
             </Form.Item>
           </div>
         </div>
-        <Divider style={{ marginTop: "0px" }} />
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            marginTop: "-10px",
-            bottom: "0",
-            width: "100%",
-          }}
-        >
-          <Button type="primary" htmlType="submit" style={{ width: "100%" }}>
+        <div >
+          <Button type="primary" htmlType="submit" className="btn-guardar">
             GUARDAR NUEVO LEAD
           </Button>
         </div>

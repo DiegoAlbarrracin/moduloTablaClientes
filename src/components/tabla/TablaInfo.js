@@ -7,6 +7,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 import { AlertOutlined, ReloadOutlined } from "@ant-design/icons";
 import { Option } from "antd/es/mentions";
+import BtnExcel from "./BtnExcel";
 
 const TablaInfo = () => {
   const URLDOS = process.env.REACT_APP_URL;
@@ -53,7 +54,6 @@ const TablaInfo = () => {
       response.text().then((resp) => {
         const data = resp;
         const objetoData = JSON.parse(data);
-
         setInfoclientes(objetoData);
         setIsLoadingTI(false); // Establecer isLoadingTI en false después de recibir la respuesta
         setIsLoadingTP(true); // Establecer isLoadingTI en false el spin de tabla productivo
@@ -136,7 +136,6 @@ const TablaInfo = () => {
       key: "clientes",
       align: "left",
       render: (text, record) => (
-        //<span style={{ color: "#00b33c", cursor:"pointer" }}>{text}</span>
         <div
           style={{
             color: "#00b33c",
@@ -327,6 +326,7 @@ const TablaInfo = () => {
 
   return (
     <>
+      <BtnExcel columns={columns} dataSource={data} saveAsName={'tablaInfo'} />
       {isLoadingTI ? (
         <div
           style={{
@@ -344,6 +344,7 @@ const TablaInfo = () => {
           dataSource={data}
           columns={columns}
           size="small"
+          pagination={{showSizeChanger: false}}
           onRow={(record) => ({
             onClick: (event) => {
               if (event.target.tagName !== "DIV") {

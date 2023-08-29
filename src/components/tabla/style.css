@@ -53,5 +53,38 @@ div.ant-drawer-body{
     display: none;
 } */
 
+/*Boton exportar a excel*/
+.btn-export {
+    border-radius: 0px;
+    width: 100px;
+}
+
+.btn-export-contenedor {
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 8px;
+    margin-top: -5px;
+}
+
+/*Ocultar columna antD*/
+.hidden-column {
+    display: none;
+}
 
 
+/*Formulario Nuevo Lead*/
+/*Inputs width*/
+.input-width {
+    width: 170px; 
+}
+
+.inline-inputs-contenedor {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.btn-guardar {
+    width: 100%;
+    margin-top: 20px; 
+}
