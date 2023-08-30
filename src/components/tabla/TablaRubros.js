@@ -100,7 +100,7 @@ const TablaRubros = () => {
       dataIndex: "cuenta",
       key: "cuenta",
       align: "center",
-      width: "50px",
+      className: 'col-cuenta-ancho', //Puesto como style en .css porque de lo contrario afecta negativamente a la hora de exportar como archivo .xlsx, ya que pasa el width como parametro oculto a la hora de generar el xlxs y abrirlo (solo en Excel).
       sorter: (a, b) => parseInt(a.cuenta) - parseInt(b.cuenta), // Agregar esta propiedad para habilitar el ordenamiento
     },
     {
@@ -112,7 +112,6 @@ const TablaRubros = () => {
         <div
           style={{
             color: "#00b33c",
-            maxWidth: "250px", // Ajusta el valor según el ancho deseado
             overflow: "hidden",
             textOverflow: "ellipsis",
             whiteSpace: "nowrap",
@@ -122,7 +121,7 @@ const TablaRubros = () => {
           {text}
         </div>
       ),
-      width: "300px",
+      className: 'col-cliente-ancho', //Puesto como style en .css porque de lo contrario afecta negativamente a la hora de exportar como archivo .xlsx, ya que pasa el width como parametro oculto a la hora de generar el xlxs y abrirlo (solo en Excel).      
       sorter: (a, b) => a.clientes?.localeCompare(b.clientes) || 0,
     },
     {

@@ -14,7 +14,7 @@ function BtnExcel({columns, dataSource, saveAsName}) {
                 cliente.cuenta = "LEAD";
             }
         }
-        
+        console.log(columns)
         const excel = new Excel();
         excel
           .addSheet("Hoja 1")
