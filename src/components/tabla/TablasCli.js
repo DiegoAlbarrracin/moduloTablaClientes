@@ -164,11 +164,11 @@ const TablasCli = () => {
           open={isDrawerVisible}
           onClose={() => setIsDrawerVisible(false)}
           placement="bottom"
-          height={"100vh"}
-          style={{ whiteSpace: "nowrap", marginTop: "-10px" }}
+          height={"100%"}
+          style={{ whiteSpace: "nowrap" }}
           closeIcon={
             <CloseOutlined
-              style={{ position: "absolute", top: "-2px", right: "10px" }}
+              style={{ position: "absolute", top: "8px", right: "8px" }}
             />
           }
         >
@@ -176,8 +176,7 @@ const TablasCli = () => {
             loading="lazy"
             src={`${URLDOS}vista_cliente/?idC=${cliSelect}`}
             width={"100%"}
-            height={"1000"}
-            style={{ border: "none" }}
+            style={{ border: "none", height: "calc(100% - 24px)" }}
             title="drawer"
           ></iframe>
         </Drawer>
